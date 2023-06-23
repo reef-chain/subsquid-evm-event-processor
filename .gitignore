@@ -1,0 +1,13 @@
+/node_modules
+/lib
+
+/**Versions.json
+
+# IDE files
+/.idea
+
+/builds
+/*.code-workspace
+.env
+
+.notes.md

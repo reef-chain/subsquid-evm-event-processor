@@ -1,0 +1,26 @@
+manifestVersion: subsquid.io/v0.1
+name: evm-sample-testnet
+version: 1
+description: |-
+  Sample EVM events processor for Reef Scuba testnet
+
+build:
+
+deploy:
+  addons:
+    postgres:
+  processor:
+    env:
+      NETWORK:
+        testnet
+      NODE_RPC_WS:
+        wss://rpc-testnet.reefscan.info/ws
+      ARCHIVE_LOOKUP_NAME:
+        reef-testnet
+      START_BLOCK:
+        1
+      CONTRACT_ADDRESS:
+        "0x0662Cff26d42Dd81De4b7fa1aeB808EB169894b1"
+    cmd: [ "node", "lib/processor" ]
+  api:
+    cmd: [ "npx", "squid-graphql-server", "--subscriptions", "--max-root-fields", "15", "--max-response-size", "1000"]

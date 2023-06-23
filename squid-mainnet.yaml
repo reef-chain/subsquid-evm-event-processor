@@ -1,0 +1,26 @@
+manifestVersion: subsquid.io/v0.1
+name: evm-sample-mainnet
+version: 1
+description: |-
+  Sample EVM events processor for Reef Mainnet
+
+build:
+
+deploy:
+  addons:
+    postgres:
+  processor:
+    env:
+      NETWORK:
+        mainnet
+      NODE_RPC_WS:
+        wss://rpc.reefscan.info/ws
+      ARCHIVE_LOOKUP_NAME:
+        reef
+      START_BLOCK:
+        1
+      CONTRACT_ADDRESS:
+        "0x2AED20ADA48d32e82250E2Ac017B68fdD2bcb2Fa"
+    cmd: [ "node", "lib/processor" ]
+  api:
+    cmd: [ "npx", "squid-graphql-server", "--subscriptions", "--max-root-fields", "15", "--max-response-size", "1000"]

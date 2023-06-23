@@ -1,0 +1,22 @@
+type PoolEvent @entity {
+  "<evmEventId>"
+  id: ID!
+  type: EventType! @index
+  toAddress: String @index
+  senderAddress: String @index
+  signerAddress: String @index
+  blockHeight: Int! @index
+  indexInBlock: Int!
+  amount1: BigInt
+  amount2: BigInt
+  amountIn1: BigInt
+  amountIn2: BigInt
+  timestamp: DateTime!
+}
+
+enum EventType {
+  Mint, 
+  Burn, 
+  Swap, 
+  Transfer
+}
