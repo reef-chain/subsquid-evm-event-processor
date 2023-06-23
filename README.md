@@ -58,7 +58,7 @@ make codegen
 
 It is necessary to import the respective ABI definition to decode EVM logs.
 
-Delete the sample ABI file `src/abi/ReefswapV2Pair.json` and replace it with the ABI definition of the contract to index.
+Delete all the contents in `src/abi` and insert the JSON ABI definition of the contract to index.
 
 To generate a type-safe facade class to decode EVM logs execute the following command:
 
@@ -113,16 +113,20 @@ const processor = new SubstrateBatchProcessor()
 
 ### 6. Implement the event handler
 
-In the `src/process/EventManager.ts` file implement the event processing handler for each event to index.
+In the `src/process/EventManager.ts` file implement the event processing handler for each event to index and compile the typescript files executing the following command:
+
+```bash
+make build
+```
 
 ### 7. Run the processor
 
 ```bash
-# Compile typescript files
-make build
-
 # Start target Postgres database and detach
 make up
+
+# Generate DB migration file (should be done every time the schema changes)
+make migration
 
 # Start the processor
 make process
