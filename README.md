@@ -144,6 +144,13 @@ Currently Subsquid does not have a direct support for views generation. In order
 **IMPORTANT**: To prevent the generation of the models for the view tables, the view entities should be commented in the `schema.graphql` file every time the TypeORM classes are generated with the `make codegen` command.
 
 
+### Project examples
+
+[Reef explorer](https://github.com/reef-chain/subsquid-processor)
+
+[Reef DEXes](https://github.com/reef-defi/subsquid-dex-indexer)
+
+
 ## Deploy API to the Subsquid Hosted service?
 
 Login to the [Subsquid Hosted Service](https://app.subsquid.io) with your github handle to obtain a deployment key. Then create a Squid (that is, your deployment) and follow the instructions.
