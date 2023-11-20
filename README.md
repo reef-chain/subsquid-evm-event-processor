@@ -70,8 +70,8 @@ And replace the following code in generated the generated `abi.support.ts` file:
 
 ```ts
 let result = await this._chain.client.call('eth_call', [
-      {to: this.address, data},
-      '0x'+this.blockHeight.toString(16)
+      { to: this.address, data },
+      '0x' + this.blockHeight.toString(16)
 ])
 ```
 by
@@ -101,14 +101,19 @@ import * as YourContract from "./abi/YourContract";
 
 const processor = new SubstrateBatchProcessor()
   .setBlockRange({ from: START_BLOCK })
-  .setDataSource({ chain: RPC_URL, archive: ARCHIVE })
-  .addEvmLog(CONTRACT_ADDRESS, {
-    filter: [[
+  .setDataSource({ 
+    chain: { url: RPC_URL, rateLimit: 10}, 
+    archive: ARCHIVE 
+  }).addEvmLog({
+    address: [
+      CONTRACT_ADDRESS
+    ],
+    topic0: [
       YourContract.events.EventOne.topic,
       YourContract.events.EventTwo.topic,
-    ]],
-    data: { event: { args: true, extrinsic: true } }
-  });
+    ],
+    extrinsic: true
+  }).setFields(fields);
 ```
 
 ### 6. Implement the event handler

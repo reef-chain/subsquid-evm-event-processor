@@ -22,10 +22,6 @@ codegen:
 	@npx squid-typeorm-codegen
 
 
-typegen:
-	@npx squid-substrate-typegen typegen.json
-
-
 archive-up:
 	@docker compose -f archive/docker-compose.yml up
 
@@ -42,4 +38,4 @@ down:
 	@docker compose down
 
 
-.PHONY: build serve process migrate codegen typegen up down
+.PHONY: build serve process migrate codegen up down
