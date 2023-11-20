@@ -111,9 +111,8 @@ export class ContractBase {
 
     async eth_call<Args extends any[], FieldArgs, Result>(func: Func<Args, FieldArgs, Result>, args: Args): Promise<Result> {
         let data = func.encode(args)
-        let result = await this._chain.client.call('eth_call', [
-            { to: this.address, data },
-            '0x' + this.blockHeight.toString(16)
+        let result = await this._chain.client.call('evm_call', [
+            {to: this.address, data, from: undefined, storageLimit: 0}
         ])
         return func.decodeResult(result)
     }
