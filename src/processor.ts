@@ -8,7 +8,7 @@ const RPC_URL = process.env.NODE_RPC_WS;
 const AQUARIUM_ARCHIVE_NAME = process.env.ARCHIVE_LOOKUP_NAME as KnownArchives;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS as string;
 const ARCHIVE = lookupArchive(AQUARIUM_ARCHIVE_NAME, { release: 'ArrowSquid' });
-const START_BLOCK = parseInt(process.env.START_BLOCK || '1') || 1;
+const START_BLOCK = parseInt(process.env.START_BLOCK || '1');
 console.log(`\nRPC URL: ${RPC_URL}\nContract: ${CONTRACT_ADDRESS}\nArchive: ${ARCHIVE}\nStart block: ${START_BLOCK}\n`);
 
 const database = new TypeormDatabase();
@@ -22,6 +22,7 @@ export const fields = {
     timestamp: true,
   },
 };
+export type Fields = typeof fields;
 
 const processor = new SubstrateBatchProcessor()
   .setBlockRange({ from: START_BLOCK })
@@ -41,7 +42,7 @@ const processor = new SubstrateBatchProcessor()
     extrinsic: true
   }).setFields(fields);
 
-export let ctx: DataHandlerContext<Store, typeof fields>;
+export let ctx: DataHandlerContext<Store, Fields>;
 
 // Avoid type errors when serializing BigInts
 (BigInt.prototype as any).toJSON = function () { return this.toString(); };

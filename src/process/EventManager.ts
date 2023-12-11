@@ -2,14 +2,14 @@ import { LogDescription } from "ethers";
 import { Event } from "@subsquid/substrate-processor";
 import * as ReefswapV2Pair from "../abi/ReefswapV2Pair";
 import { EventType, PoolEvent } from "../model";
-import { ctx, fields } from "../processor";
+import { Fields, ctx } from "../processor";
 import { hexToNativeAddress } from "./util";
 
 export class EventManager {
     poolEventsCache: PoolEvent[] = [];
 
     // Process an event and add it to the cache
-    async process(event: Event<typeof fields>): Promise<void> {
+    async process(event: Event<Fields>): Promise<void> {
         // Map common fields
         const poolEventBase = new PoolEvent ({
             id: event.id,
