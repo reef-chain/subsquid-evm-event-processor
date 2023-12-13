@@ -1,6 +1,6 @@
 # Reef EVM event processor Squid sample
 
-Sample project for processing and indexing EVM events in the Reef chain using the [Subsquid's FireSquid version for Substrate chains](https://docs.subsquid.io/firesquid/substrate-indexing/).
+Sample project for processing and indexing EVM events in the Reef chain using the [Subsquid's ArrowSquid version for Substrate chains](https://docs.subsquid.io/sdk/resources/substrate/frontier-evm/).
 
 Built upon [Squid Frontier EVM template](https://github.com/subsquid/squid-frontier-evm-template) and adapted to be used with Reef chain.
 
@@ -42,7 +42,7 @@ make down
 
 Delete migration files from `db/migrations` directory and define the schema of the target database via `schema.graphql` file, replacing the sample definition.
 Schema definition consists of regular graphql type declarations annotated with custom directives.
-Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/firesquid/basics/intro/).
+Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/sdk/reference/schema-file/).
 
 ### 2. Generate TypeORM classes
 
@@ -102,7 +102,7 @@ import * as YourContract from "./abi/YourContract";
 const processor = new SubstrateBatchProcessor()
   .setBlockRange({ from: START_BLOCK })
   .setDataSource({ 
-    chain: { url: RPC_URL, rateLimit: 10}, 
+    chain: { url: RPC_URL, rateLimit: 10 },
     archive: ARCHIVE 
   }).addEvmLog({
     address: [
@@ -157,7 +157,7 @@ Currently Subsquid does not have a direct support for views generation. In order
 
 [Reef explorer](https://github.com/reef-chain/subsquid-processor)
 
-[Reef DEXes](https://github.com/reef-defi/subsquid-dex-indexer)
+[Reef DEX](https://github.com/reef-chain/subsquid-processor-dex)
 
 
 ## Deploy API to the Subsquid Hosted service?
