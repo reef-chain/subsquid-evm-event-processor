@@ -159,6 +159,8 @@ Currently Subsquid does not have a direct support for views generation. In order
 
 [Reef DEX](https://github.com/reef-chain/subsquid-processor-dex)
 
+[Sqwid marketplace](https://github.com/sqwid-app/marketplace-indexer)
+
 
 ## Deploy API to the Subsquid Hosted service?
 
