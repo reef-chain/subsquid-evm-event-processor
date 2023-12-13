@@ -1,28 +1,29 @@
-import { SubstrateBlock } from "@subsquid/substrate-processor";
-import { EventRaw } from "../interfaces/interfaces";
+import { LogDescription } from "ethers";
+import { Event } from "@subsquid/substrate-processor";
 import * as ReefswapV2Pair from "../abi/ReefswapV2Pair";
 import { EventType, PoolEvent } from "../model";
-import { LogDescription } from "@ethersproject/abi";
-import { ctx } from "../processor";
+import { Fields, ctx } from "../processor";
 import { hexToNativeAddress } from "./util";
 
 export class EventManager {
     poolEventsCache: PoolEvent[] = [];
 
     // Process an event and add it to the cache
-    async process(eventRaw: EventRaw, blockHeader: SubstrateBlock): Promise<void> {
+    async process(event: Event<Fields>): Promise<void> {
         // Map common fields
         const poolEventBase = new PoolEvent ({
-            id: eventRaw.id,
-            blockHeight: blockHeader.height,
-            indexInBlock: eventRaw.extrinsic?.indexInBlock,
-            signerAddress: hexToNativeAddress(eventRaw.extrinsic?.signature?.address?.value),
-            timestamp: new Date(blockHeader.timestamp),
+            id: event.id,
+            blockHeight: event.block.height,
+            indexInBlock: event.extrinsic?.index,
+            signerAddress: hexToNativeAddress(event.extrinsic?.signature?.address as string),
+            timestamp: new Date(event.block.timestamp!),
         });
 
         // Map event-specific fields
-        const eventData = ReefswapV2Pair.abi.parseLog(eventRaw.args);
-        const topic0 = eventRaw.args.topics[0] || "";
+        const eventData = ReefswapV2Pair.abi.parseLog(event.args);
+        if (!eventData) return;
+
+        const topic0 = event.args.topics[0] || "";
         switch (topic0) {
             case ReefswapV2Pair.events.Mint.topic:
                 this.processMintEvent(poolEventBase, eventData);

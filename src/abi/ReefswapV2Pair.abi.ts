@@ -1,6 +1,7 @@
 export const ABI_JSON = [
     {
         "type": "constructor",
+        "stateMutability": "undefined",
         "payable": false,
         "inputs": []
     },
@@ -160,7 +161,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "bytes32"
+                "type": "bytes32",
+                "name": ""
             }
         ]
     },
@@ -173,7 +175,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint256"
+                "type": "uint256",
+                "name": ""
             }
         ]
     },
@@ -186,7 +189,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "bytes32"
+                "type": "bytes32",
+                "name": ""
             }
         ]
     },
@@ -198,15 +202,18 @@ export const ABI_JSON = [
         "payable": false,
         "inputs": [
             {
-                "type": "address"
+                "type": "address",
+                "name": ""
             },
             {
-                "type": "address"
+                "type": "address",
+                "name": ""
             }
         ],
         "outputs": [
             {
-                "type": "uint256"
+                "type": "uint256",
+                "name": ""
             }
         ]
     },
@@ -227,7 +234,8 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool"
+                "type": "bool",
+                "name": ""
             }
         ]
     },
@@ -239,12 +247,14 @@ export const ABI_JSON = [
         "payable": false,
         "inputs": [
             {
-                "type": "address"
+                "type": "address",
+                "name": ""
             }
         ],
         "outputs": [
             {
-                "type": "uint256"
+                "type": "uint256",
+                "name": ""
             }
         ]
     },
@@ -279,7 +289,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8"
+                "type": "uint8",
+                "name": ""
             }
         ]
     },
@@ -292,7 +303,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "address"
+                "type": "address",
+                "name": ""
             }
         ]
     },
@@ -344,7 +356,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint256"
+                "type": "uint256",
+                "name": ""
             }
         ]
     },
@@ -375,7 +388,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "string"
+                "type": "string",
+                "name": ""
             }
         ]
     },
@@ -387,12 +401,14 @@ export const ABI_JSON = [
         "payable": false,
         "inputs": [
             {
-                "type": "address"
+                "type": "address",
+                "name": ""
             }
         ],
         "outputs": [
             {
-                "type": "uint256"
+                "type": "uint256",
+                "name": ""
             }
         ]
     },
@@ -442,7 +458,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint256"
+                "type": "uint256",
+                "name": ""
             }
         ]
     },
@@ -455,7 +472,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint256"
+                "type": "uint256",
+                "name": ""
             }
         ]
     },
@@ -506,7 +524,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "string"
+                "type": "string",
+                "name": ""
             }
         ]
     },
@@ -527,7 +546,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "address"
+                "type": "address",
+                "name": ""
             }
         ]
     },
@@ -540,7 +560,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "address"
+                "type": "address",
+                "name": ""
             }
         ]
     },
@@ -553,7 +574,8 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint256"
+                "type": "uint256",
+                "name": ""
             }
         ]
     },
@@ -574,7 +596,8 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool"
+                "type": "bool",
+                "name": ""
             }
         ]
     },
@@ -599,7 +622,8 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool"
+                "type": "bool",
+                "name": ""
             }
         ]
     }
