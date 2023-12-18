@@ -7,9 +7,15 @@ import { EventManager } from "./process/EventManager";
 const RPC_URL = process.env.NODE_RPC_WS;
 const AQUARIUM_ARCHIVE_NAME = process.env.ARCHIVE_LOOKUP_NAME as KnownArchives;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS as string;
-const ARCHIVE = lookupArchive(AQUARIUM_ARCHIVE_NAME, { release: 'ArrowSquid' });
+const USE_ONLY_RPC = process.env.USE_ONLY_RPC === 'true';
+const ARCHIVE = USE_ONLY_RPC ? undefined : lookupArchive(AQUARIUM_ARCHIVE_NAME, { release: 'ArrowSquid' });
 const START_BLOCK = parseInt(process.env.START_BLOCK || '1');
-console.log(`\nRPC URL: ${RPC_URL}\nContract: ${CONTRACT_ADDRESS}\nArchive: ${ARCHIVE}\nStart block: ${START_BLOCK}\n`);
+console.log(`
+    RPC URL: ${RPC_URL}
+    Contract: ${CONTRACT_ADDRESS}
+    Archive: ${USE_ONLY_RPC ? 'None' : ARCHIVE}
+    Start block: ${START_BLOCK}
+`);
 
 const database = new TypeormDatabase();
 export const fields = {
@@ -27,8 +33,8 @@ export type Fields = typeof fields;
 const processor = new SubstrateBatchProcessor()
   .setBlockRange({ from: START_BLOCK })
   .setDataSource({ 
-    chain: { url: RPC_URL!, rateLimit: 10 }, 
-    archive: ARCHIVE 
+    chain: { url: RPC_URL!, rateLimit: 10 },
+    archive: ARCHIVE
   }).addEvmLog({
     address: [
       CONTRACT_ADDRESS

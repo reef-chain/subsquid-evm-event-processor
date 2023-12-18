@@ -20,7 +20,9 @@ deploy:
       START_BLOCK:
         1
       CONTRACT_ADDRESS:
-        "0x0662Cff26d42Dd81De4b7fa1aeB808EB169894b1"
+        "TODO"
+      USE_ONLY_RPC:
+        false
     cmd: [ "node", "lib/processor" ]
   api:
     cmd: [ "npx", "squid-graphql-server", "--subscriptions", "--max-root-fields", "15", "--max-response-size", "1000"]
