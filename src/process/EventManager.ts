@@ -5,17 +5,23 @@ import { EventType, PoolEvent } from "../model";
 import { Fields, ctx } from "../processor";
 import { hexToNativeAddress } from "./util";
 
+interface DataRawAddress {
+    __kind: string,
+    value: string
+}
+
 export class EventManager {
     poolEventsCache: PoolEvent[] = [];
 
     // Process an event and add it to the cache
     async process(event: Event<Fields>): Promise<void> {
         // Map common fields
+        const addressHex = (event.extrinsic!.signature!.address as DataRawAddress).value;
         const poolEventBase = new PoolEvent ({
             id: event.id,
             blockHeight: event.block.height,
             indexInBlock: event.extrinsic?.index,
-            signerAddress: hexToNativeAddress(event.extrinsic?.signature?.address as string),
+            signerAddress: hexToNativeAddress(addressHex),
             timestamp: new Date(event.block.timestamp!),
         });
 

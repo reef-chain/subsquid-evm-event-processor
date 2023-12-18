@@ -2,7 +2,7 @@ version: "3"
 
 services:
   db:
-    image: postgres:14
+    image: postgres:15
     environment:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
@@ -10,3 +10,4 @@ services:
     ports:
       - "${DB_PORT}:5432"
       # command: ["postgres", "-c", "log_statement=all"]
+    shm_size: 1gb
